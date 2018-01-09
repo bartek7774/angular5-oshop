@@ -20,7 +20,7 @@ export class ProductFormComponent implements OnInit {
     categoryService: CategoryService,
     private productService: ProductService
   ) {
-    this.categories$ = categoryService.getCategories();
+    this.categories$ = categoryService.getAll();
   }
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");

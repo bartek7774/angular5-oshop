@@ -24,7 +24,7 @@
         <select #category="ngModel" [(ngModel)]="product.category" class="form-control" name="category" id="category" required>
           <option value=""></option>
           <option *ngFor="let c of categories$ | async" [value]="c.key">
-            {{ c.payload | json | extract:"name"}}
+            {{ c.name }}
           </option>
         </select>
         <div class="alert alert-danger col-sm-12" *ngIf="category.touched&&category.invalid">
@@ -47,14 +47,7 @@
     </form>
 
   </div>
-
-  <div class="col-md-6 mt-2">
-    <div *ngIf="product.title" class="card bg-light">
-      <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl">
-      <div class="card-body">
-        <h4 class="card-title">{{product.title}}</h4>
-        <p class="card-text">{{product.price | currency:'USD':'symbol-narrow'}}</p>
-      </div>
-    </div>
+  <div class="col-md-6">
+    <product-card [product]="product" [show-actions]="false"></product-card>
   </div>
 </div>

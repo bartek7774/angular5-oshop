@@ -11,7 +11,7 @@ import { DataTableResource } from "../../data-table/index";
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];
-  subscrition: Subscription;
+  subscription: Subscription;
 
   itemResource: DataTableResource<Product>;
   items: Product[] = [];
@@ -20,22 +20,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.subscrition = this.productService.getAll().subscribe(prods => {
-      this.products = prods.map(p => {
-        const obj = JSON.parse(JSON.stringify(p));
-        return {
-          key: obj.key,
-          title: obj.payload.title,
-          price: obj.payload.price,
-          category: obj.payload.category,
-          imageUrl: obj.payload.iamgeUrl
-        };
-      });
+    this.subscription = this.productService.getAll().subscribe(prods => {
+      this.products = prods;
       this.initializeTable(this.products);
     });
-  }
-  ngOnDestroy() {
-    this.subscrition.unsubscribe();
   }
   private initializeTable(products: Product[]) {
     this.itemResource = new DataTableResource(products);
@@ -61,5 +49,8 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
         ? filteredProducts.length
         : 6;
     this.initializeTable(filteredProducts);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
