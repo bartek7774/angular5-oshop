@@ -5,6 +5,9 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireAuthModule, AngularFireAuth } from "angularfire2/auth";
+import { FormsModule } from "@angular/forms";
+import { DataTableModule } from './data-table';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from "./app.component";
 import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
@@ -23,6 +26,11 @@ import { AuthGuardService } from "./auth-guard.service";
 import { UserService } from "./user.service";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AdminAuthGuardService } from "./admin-auth-guard.service";
+import { ProductFormComponent } from "./admin/product-form/product-form.component";
+import { CategoryService } from "./category.service";
+import { ExtractPipe } from "./extract.pipe";
+import { ProductService } from "./product.service";
+import { CustomFormsModule } from "ng2-validation";
 
 @NgModule({
   declarations: [
@@ -36,7 +44,9 @@ import { AdminAuthGuardService } from "./admin-auth-guard.service";
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent,
+    ExtractPipe
   ],
   imports: [
     BrowserModule,
@@ -69,6 +79,16 @@ import { AdminAuthGuardService } from "./admin-auth-guard.service";
         canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
+        path: "admin/products/new",
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+      },
+      {
+        path: "admin/products/:id",
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+      },
+      {
         path: "admin/products",
         component: AdminProductsComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService]
@@ -78,13 +98,19 @@ import { AdminAuthGuardService } from "./admin-auth-guard.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    CustomFormsModule,
+    DataTableModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     AuthService,
     AuthGuardService,
     UserService,
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
