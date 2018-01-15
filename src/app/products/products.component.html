@@ -2,9 +2,9 @@
   <div class="col-sm-3">
     <product-filter [category]="category"></product-filter>
   </div>
-  <div class="col-sm d-flex flex-row flex-wrap justify-content-between align-items-start">
+  <div *ngIf="cart$ | async as cart" class="col-sm d-flex flex-row flex-wrap justify-content-between align-items-start">
     <ng-container *ngFor="let p of filteredProducts">
-      <product-card [product]="p"></product-card>
+      <product-card [product]="p" [shopping-cart]="cart"></product-card>
     </ng-container>
   </div>
 </div>

@@ -1,14 +1,17 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <a class="navbar-brand" routerLink="/">OS</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-    aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" (click)="navbar.classList.toggle('show')">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div class="collapse navbar-collapse" #navbar>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">Shopping cart</a>
+        <a class="nav-link" routerLink="/shopping-cart">
+          Shopping cart
+          <span class="badge badge-pill badge-warning" *ngIf="cart$ | async as cart"
+          >{{ cart.totalItemsCount }}</span>
+        </a>
       </li>
       <ng-template #anonymousUser>
         <li class="nav-item">

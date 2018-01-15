@@ -1,0 +1,11 @@
+<div class="row no-gutters">
+  <div class="col-2">
+    <button [disabled]="shoppingCart.getQuantity(product)===0" (click)="removeFromCart()" class="btn btn-secondary btn-block">-</button>
+  </div>
+  <div class="col-8 d-flex align-items-center justify-content-center">
+    <div>{{shoppingCart.getQuantity(product)}} in cart</div>
+  </div>
+  <div class="col-2">
+    <button (click)="AddToCart()" class="btn btn-secondary btn-block">+</button>
+  </div>
+</div>

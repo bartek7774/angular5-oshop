@@ -20,10 +20,8 @@ export class ProductService {
           const obj = JSON.parse(JSON.stringify(p));
           return {
             key: obj.key,
-            title: obj.payload.title,
-            price: obj.payload.price,
-            category: obj.payload.category,
-            imageUrl: obj.payload.imageUrl
+            ...obj.payload,
+            imageUrl: null
           };
         });
       });
