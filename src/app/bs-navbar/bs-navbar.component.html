@@ -21,7 +21,7 @@
       <li *ngIf="appUser; else anonymousUser" class="nav-item dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" ngbDropdownToggle id="dropdown01">{{appUser.email}}</a>
         <div ngbDropdownMenu>
-          <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+          <a class="dropdown-item" routerLink="/my-orders">My Orders</a>
           <ng-container *ngIf="appUser.isAdmin">
             <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
             <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>

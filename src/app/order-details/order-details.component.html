@@ -1,0 +1,4 @@
+<div *ngIf="order$ | async as order">
+  <p>{{order.dataPlaced | date: 'hh:mm d/M/y' }}</p>
+  <p>{{order|json}}</p>
+</div>

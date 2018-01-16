@@ -1,0 +1,44 @@
+<form #f="ngForm" ngForm (ngSubmit)="proceed(f)">
+  <fieldset class="form-group row" [ngClass]="{'was-validated':name.touched&&name.errors?.required}">
+    <legend for="name" class="col-form-legend col">Name</legend>
+    <div class="col">
+      <input [(ngModel)]="shipping.name" type="text" class="form-control" name="name" #name="ngModel" placeholder="name..." required>
+      <div class="invalid-feedback" *ngIf="name.touched&&name.errors?.required">
+        Please choose a username.
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="form-group row" [ngClass]="{'was-validated':address1.touched&&address2.errors?.required}">
+    <legend class="col-form-legend col">Address</legend>
+    <div class="col">
+      <input [(ngModel)]="shipping.address1" ngModel type="text" class="form-control" name="address1" #address1="ngModel" placeholder="address..."
+        required>
+      <div class="invalid-feedback" *ngIf="address1.touched&&address1.errors?.required">
+        Please type your address.
+      </div>
+    </div>
+    <br>
+    <div class="col">
+      <input [(ngModel)]="shipping.address2" ngModel type="text" class="form-control" name="address2" placeholder="address..."
+        #address2="ngModel" required>
+      <div class="invalid-feedback" *ngIf="address2.touched&&address2.errors?.required">
+        Please type your address.
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="form-group row" [ngClass]="{'was-validated':city.touched&&city.errors?.required}">
+    <legend for="city" class="col-form-legend col">City</legend>
+    <div class="col">
+      <input [(ngModel)]="shipping.city" ngModel type="text" class="form-control" name="city" #city="ngModel" placeholder="city..."
+        required>
+      <div class="invalid-feedback" *ngIf="city.touched&&city.errors?.required">
+        Please type your city.
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-8">
+      <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-block">Place Order</button>
+    </div>
+  </div>
+</form>
